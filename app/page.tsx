@@ -1,7 +1,7 @@
 "use client";
 
 import { getPosts } from "@/lib/getPost";
-import { Metadata } from "next";
+
 import { useEffect, useState } from "react";
 
 export interface Post {
