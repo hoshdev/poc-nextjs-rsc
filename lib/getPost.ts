@@ -1,5 +1,3 @@
-"use server";
-
 import { Post } from "@/app/page";
 
 const posts: Post[] = [

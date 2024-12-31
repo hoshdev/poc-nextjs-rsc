@@ -1,10 +1,8 @@
+"use client";
+
 import { getPosts } from "@/lib/getPost";
 import { Metadata } from "next";
-
-export const metadata: Metadata = {
-  title: "Posts | Learn by Doing",
-  description: "A list of posts with rich text descriptions and content.",
-};
+import { useEffect, useState } from "react";
 
 export interface Post {
   id: number;
@@ -13,8 +11,17 @@ export interface Post {
   content: string;
 }
 
-const PostsPage = async () => {
-  const posts = await getPosts();
+const PostsPage = () => {
+  const [posts, setPosts] = useState<Post[]>([]);
+  useEffect(() => {
+    console.log("browserUseEffect", typeof window !== "undefined");
+    getPosts()
+      .then((posts) => setPosts(posts))
+      .catch((err) => console.log("err", err));
+  }, []);
+
+  console.log("browser", typeof window !== "undefined");
+
   return (
     <div className="min-h-screen bg-gray-100 py-10">
       <div className="container mx-auto px-4">
